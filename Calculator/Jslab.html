@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calculator</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-image: url("calci.jpg");
+            background-size: cover;
+            background-position: center;
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: left;
+            margin: 0;
+            padding: 10px;
+            color: #fff;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        button {
+            width: calc(50% - 20px); /* Ensure buttons fit without overflow */
+            padding: 15px 0;
+            text-align: center;
+            margin: 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            border: 2px solid #0edec9;
+            background: transparent;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        button span {
+            background: #11cab7;
+            height: 100%;
+            width: 0;
+            border-radius: 25px;
+            position: absolute;
+            transition: .5s;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        button:hover span {
+            width: 100%;
+        }
+
+        button:hover {
+            border: none;
+            color: blue;
+        }
+
+        .container {
+            max-width: 500px;
+            height: 100vh; /* Full height of viewport */
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 30px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            justify-content: space-between; /* Space out elements evenly */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2em;
+            color: #0edec9;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 2px solid #0edec9;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #000;
+        }
+
+        .btn {
+            text-decoration: none;
+            width: calc(50% - 20px); /* Ensure buttons fit without overflow */
+            margin: 10px 0; /* Adjust margin */
+            background-color: #0edec9;
+            color: #000;
+            border: none;
+            border-radius: 25px;
+            padding: 15px 0;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #11cab7;
+        }
+
+        .btn-danger {
+            background-color: #ff5e5e;
+        }
+
+        .btn-danger:hover {
+            background-color: #ff2e2e;
+        }
+
+        #result {
+            float: right; /* Position to the right */
+            font-size: 1.5em;
+            color: #0edec9;
+            background-color: rgba(0, 0, 0, 0.5); /* Optional background for better visibility */
+            padding: 10px; /* Optional padding */
+            border-radius: 10px; /* Optional rounded corners */
+            margin-top: 10px; /* Space from the top */
+            clear: both; /* Ensure it does not overlap */
+        }
+
+        .clear-button-wrapper {
+            display: flex;
+            justify-content: center; /* Center the clear button */
+            width: 100%; /* Full width for the button wrapper */
+            margin: 10px 0; /* Add margin for spacing */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CALCULATOR</h1>
+        <label for="num1">Enter first number:</label>
+        <input type="number" id="num1">
+
+        <label for="num2">Enter second number:</label>
+        <input type="number" id="num2">
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between;"> <!-- Button container -->
+            <button onclick="add()" class="btn">Addition</button>
+            <button onclick="sub()" class="btn">Subtraction</button>
+            <button onclick="mul()" class="btn">Multiplication</button>
+            <button onclick="div()" class="btn">Division</button>
+        </div>
+
+        <div class="clear-button-wrapper">
+            <button onclick="ClearFields()" class="btn btn-danger">Clear</button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script type="text/javascript">
+        // Function to display the result
+        function displayResult(message) {
+            document.getElementById("result").innerText = message;
+        }
+
+        // Addition Function
+        function add() {
+            var a = parseFloat(document.getElementById("num1").value);
+            var b = parseFloat(document.getElementById("num2").value);
+            displayResult("Sum of the numbers: " + (a + b));
+        }
+
+        // Subtraction Function
+        function sub() {
+            var a = parseFloat(document.getElementById("num1").value);
+            var b = parseFloat(document.getElementById("num2").value);
+            displayResult("Difference of the numbers: " + (a - b));
+        }
+
+        // Multiplication Function
+        function mul() {
+            var a = parseFloat(document.getElementById("num1").value);
+            var b = parseFloat(document.getElementById("num2").value);
+            displayResult("Product of the numbers: " + (a * b));
+        }
+
+        // Division Function
+        function div() {
+            var a = parseFloat(document.getElementById("num1").value);
+            var b = parseFloat(document.getElementById("num2").value);
+            if (b == 0) {
+                displayResult("Division by zero is not possible");
+            } else {
+                displayResult("Division of the numbers: " + (a / b));
+            }
+        }
+
+        // Clear Function
+        function ClearFields() {
+            document.getElementById("num1").value = "";
+            document.getElementById("num2").value = "";
+            displayResult(""); // Clear the result display
+        }
+    </script>
+</body>
+</html>
